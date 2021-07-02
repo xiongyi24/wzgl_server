@@ -1,0 +1,64 @@
+<!--pages/index//borrow/borrow.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">设备借出</view>
+  </cu-custom>
+
+  <view class="flex-sub text-center">
+    <view class="padding"></view>
+    <view class="solid-bottom text-xsl padding">
+      <text class=" cuIcon-edit"></text>
+    </view>
+    <form>
+      <view class="cu-form-group margin-top">
+        <view class="title">编号</view>
+        <input placeholder="{{deviceId?deviceId:'请输入设备编号'}}" bindinput="deviceIdInput"></input>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-gradual-blue lg" bindtap="findDeviceById">查找设备</button>
+      </view>
+    </form>
+    <view class="solid-bottom text-xl padding text-center" bindtap="findDeviceByCode">
+        <text class="text-black"> 扫码查找 </text>  
+    </view> 
+  </view>
+</view>
+
+<view class="cu-modal {{deviceInfo?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{deviceInfo.name}} {{deviceInfo.id}}</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl text-lg">
+      <view>
+        <view>类别：{{deviceInfo.zl}}</view>
+        <view>位置：{{deviceInfo.wz}}</view>
+        <view class="{{deviceInfo.zt[1]}}">状态：{{deviceInfo.zt[0]}}</view>
+        <view>备注：{{deviceInfo.bz}}</view>
+      </view>
+      <view class="flex solid-bottom padding justify-center">
+        <button class="cu-btn round" bindtap="borrowRecord" data-id="{{deviceInfo.id}}">借出记录</button>
+        <button wx:if="{{deviceInfo.zt[0]=='未借出'}}" class="cu-btn round" bindtap="borrowDevice" data-id="{{deviceInfo.id}}">借出</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{borrowRecord[0]}}</view>
+      <view class="action" bindtap="hideModal_recode">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <scroll-view class="padding-xl" scroll-y scroll-with-animation style="height:500px">
+      <view wx:for="{{borrowRecord[1]}}">{{item}}</view>
+      <view class="text-sm padding text-grey">按时间倒序排列</view>
+    </scroll-view>
+  </view>
+</view>

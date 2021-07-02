@@ -1,0 +1,40 @@
+<!--pages/index/changeDevice/changeDevice.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">修改设备信息</view>
+  </cu-custom>
+
+  <view class="flex-sub text-center">
+    <view class="padding"></view>
+    <view class="solid-bottom text-xsl padding">
+      <text class=" cuIcon-edit"></text>
+    </view>
+    <form>
+      <view class="cu-form-group">
+        <view class="title">编号</view>
+        <input placeholder="{{deviceId?deviceId:'请输入设备编号'}}" bindinput="deviceIdInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">名称</view>
+        <input value="{{deviceName?deviceName:'请输入设备名称'}}" bindinput="deviceNameInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">位置</view>
+        <input value="{{deviceLocation?deviceLocation:'请输入设备位置'}}" bindinput="deviceLocationInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">类别</view>
+        <input value="{{deviceType?deviceType:'请输入设备类别'}}" bindinput="deviceTypeInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">注释（非必填）</view>
+        <input value="{{deviceComments?deviceComments:''}}" bindinput="deviceCommentsInput"></input>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-gradual-blue lg deleteButton" bindtap="changeDevice">修改设备信息</button>
+        <button class="cu-btn bg-gradual-pink lg deleteButton" bindtap="deleteDevice">删除设备</button>
+      </view>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+    <view class="action" bindtap="BackPage" wx:if="{{isBack}}">
+      <text class="cuIcon-back"></text>
+      <slot name="backText"></slot>
+    </view>
+    <!--课程表页左上角自定义-->
+    <!--还需在对应的js文件中 properties 和 methods 中添加对应项-->
+    <view class="action" bindtap="showMore" wx:if="{{showDetail}}">
+      <text class="cuIcon-sort"></text>
+      <!--slot插槽可理解为将自定义的组件命名为什么，其他页面调用将会将本块替换至调用的位置-->
+      <slot name="showDetail"></slot>
+    </view>
+    <view class="action border-custom"  wx:if="{{isCustom}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+      <text class="cuIcon-back" bindtap="BackPage"></text>
+      <text class="cuIcon-homefill" bindtap="toHome"></text>
+    </view>
+    <view class="content" style="top:{{StatusBar}}px">
+      <slot name="content"></slot>
+    </view>
+    <slot name="right"></slot>
+  </view>
+</view>

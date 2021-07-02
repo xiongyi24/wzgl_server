@@ -1,0 +1,27 @@
+<!--pages/login/login.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">登录</view>
+  </cu-custom>
+
+  <view class="head margin-top padding-top">
+    <image style="border-radius:50%; height:180rpx;width:180rpx; margin:10rpx" src="{{image}}"></image>
+    <form>
+      <view class="cu-form-group margin-top">
+        <view class="title">学号</view>
+        <input placeholder="请输入学号" bindinput="stuIdInput"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">密码</view>
+        <input placeholder="请输入密码" bindinput="passwordInput"></input>
+      </view>
+      <view class="solid-bottom text-df padding text-center" bindtap="toRegister">
+        <text class="text-grey"> 没有账号？点我注册！ </text>  
+      </view> 
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-gradual-blue lg" bindtap="login">登录</button>
+      </view>
+    </form>
+  </view>
+</view>

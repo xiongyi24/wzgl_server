@@ -1,0 +1,37 @@
+<!--pages/scan/scan/scan.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">扫码</view>
+</cu-custom>
+
+<view class="flex-sub text-center">
+  <view class="padding"></view>
+  <view class="solid-bottom text-xsl padding">
+    <text class=" cuIcon-edit"></text>
+  </view>
+  <form class=" shadow">
+    <view class="cu-item cu-form-group margin-top">
+      <view class="title">编号</view>
+      <input placeholder="{{deviceId?deviceId:'请输入设备编号'}}" bindinput="deviceIdInput"></input>
+    </view>
+  </form>
+
+  <view class="padding"> </view>
+
+  <view class="cu-bar bg-white flex solid-bottom padding justify-start action">
+      <text class="cuIcon-title text-orange "></text> 选择操作
+  </view>
+  <view class="cu-list grid col-3">
+    <view class="cu-item" wx:for="{{iconList}}" wx:key >
+      <view wx:if="{{item.isShow}}" bindtap="{{item.func}}" data-id="{{deviceId}}">
+        <view class="cuIcon-{{item.icon}} text-{{item.color}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-gradual-blue lg" bindtap="scanAgain">再次扫描</button>
+  </view>
+  
+</view>

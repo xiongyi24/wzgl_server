@@ -1,0 +1,75 @@
+/* pages/index/device/device.wxss */
+.cu-card {
+	display: block;
+	overflow: hidden;
+}
+
+.cu-card>.cu-item {
+	display: block;
+	background-color: var(--white);
+	overflow: hidden;
+	border-radius: 10rpx;
+	margin: 20rpx 35rpx 5rpx 35rpx;
+}
+.none{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 400px
+}
+.Scancode {
+  font-size: 39rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.botton {
+  margin: 0rpx 0rpx 100rpx 0rpx;
+}
+
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+.VerticalBox{
+  display: flex;
+}
+.VerticalMain{
+  background-color: #f1f1f1;
+}
+
+.cu-list.menu-avatar>.cu-item_1 {
+	padding-right: 10rpx;
+	height: 140rpx;
+	background-color: var(--white);
+}

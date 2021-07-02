@@ -1,0 +1,43 @@
+<!--pages/my/my.wxml-->
+
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">个人中心</view>
+</cu-custom>
+  
+<!--顶部-->
+<view class="head margin-top padding-top " bindtap="toLogin">
+  <image style="border-radius:50%; height:180rpx;width:180rpx; margin:10rpx" src="{{image}}"></image>
+  <view class="text-xxl text-black " style="margin-bottom:5rpx" >{{userName}}</view>
+  <view class="text-df text-black" style="margin-bottom:9rpx" wx:if="{{stu_id!=''}}" >{{userId}}</view>
+  <view class="text-df text-black" style="margin-bottom:9rpx" wx:if="{{stu_id!=''}}" >{{userStatus}}</view>
+</view>
+
+<view class="cu-list menu sm-border card-menu margin-top padding-top" >
+  <!--登录或注销-->
+  <!--注销 wx:if="{{userId}}"-->
+  <view wx:if="{{userId}}" class="cu-item arrow" bindtap="loginOut">
+    <view class="content">
+      <text class="cuIcon-settings text-blue "></text>
+      <text class="text-grey">登录或注销</text>
+    </view>
+  </view>
+  <!--登录-->
+  <view wx:else class="cu-item arrow" bindtap="toLogin">
+    <view class="content">
+      <text class="cuIcon-settings text-blue "></text>
+      <text class="text-grey">登录或注销</text>
+    </view>
+  </view>
+  <!--关于-->
+  <view class="cu-item arrow" bindtap="goabout">
+    <view class="content">
+      <text class="cuIcon-favor text-blue "></text>
+      <text class="text-grey ">关于</text>
+    </view>
+  </view>
+</view>
+
+<!--底部-->
+<view class="solid-bottom text-sm padding text-center">
+  <text class="text-grey"> CUBOT 物资管理 </text>  
+</view>

@@ -1,0 +1,4 @@
+/* pages/index/changeDevice/changeDevice.wxss */
+.deleteButton{
+  margin: 10rpx 0rpx 10rpx 0rpx;
+}

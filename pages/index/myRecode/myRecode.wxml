@@ -1,0 +1,49 @@
+<!--pages/index/myRecode/myRecode.wxml-->
+<!--pages/index/device/device.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">我的纪录</view>
+  </cu-custom>
+
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabData}}" wx:key bindtap="tabSelect" data-id="{{item.id}}">
+      {{item.name}}
+    </view>
+    
+  </scroll-view>
+
+  <view wx:if="{{TabCur==0}}">
+    <view wx:if="{{examineData.length != 0}}">
+      <view wx:for="{{examineData}}" wx:key class="cu-card article {{isCard?'no-card':''}}">
+        <view wx:if="{{item.isShow}}" class="cu-item shadow" data-approve_id="{{item.approve_id}}">
+          <view class="title">
+            <view></view>
+            <view class="text-cut">{{item.name}} {{item.id}}</view>
+          </view>
+          <view class="content">
+            <view class="desc">
+              <view class="text-df">借出人姓名：{{item.username}}</view>
+              <view class="text-df ">审批时间：{{item.time}}</view>
+              <view class="flex flex-wrap justify-between align-center bg-white">
+                <view class="flex solid-bottom justify-start">
+                  <view class="text-df ">状态：</view>
+                  <view class="{{item.operation[1]}} colorText">{{item.operation[0]}}</view>
+                  <view class="{{item.state[1]}} colorText">{{item.state[0]}}</view>
+                </view>
+                <view wx:if="{{item.operation[0]=='借出' && item.state[0]=='审核通过'}}">
+                  <button class="cu-btn round" bindtap="returnFunc" data-deviceId="{{item.id}}" data-approveId="{{item.approve_id}}">归还</button>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="none">
+      <view class="text-gray text-bold text-lg text-center">暂无信息</view>
+    </view>
+  </view>
+
+</view>
+

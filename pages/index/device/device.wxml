@@ -1,0 +1,91 @@
+<!--pages/index/device/device.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">设备详情</view>
+  </cu-custom>
+
+  <view class="cu-bar bg-white search">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="按设备名称搜索设备" confirm-type="search" bindinput="searchDevice"></input>
+    </view>
+  </view>
+
+  <view wx:if="{{list.length!=0}}">
+    <view class="VerticalBox">
+      <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+        <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+          <view class="text-cut">
+            {{item.name}}
+          </view>
+        </view>
+      </scroll-view>
+      <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+        <view class="padding-top padding-lr" wx:for="{{list}}" wx:key id="main-{{index}}">
+          <!-- 每个小标题 -->
+          <view class='cu-bar solid-bottom bg-white'>
+            <view class='action'>
+              <text class='cuIcon-title text-green'></text> {{item.name}} </view>
+          </view>
+          <!-- 内容 -->
+          <view class="cu-list menu-avatar">
+            <view wx:for="{{item.deviceInfo}}" class="cu-item_1" wx:if="{{item.isShow}}">
+              <view class="flex solid-bottom padding justify-between align-center">
+                <view class="text-black">{{item.name}} {{item.id}}</view>
+                <button class="cu-btn round" bindtap="deviceInfo" data-deviceData="{{item}}">详情</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view wx:else class="none">
+    <view class="text-gray text-bold text-lg text-center">暂无信息</view>
+  </view>
+  <view wx:if="{{userStatus=='admin'}}">
+    <button class='Scancode' bindtap='addDevice'>添加设备</button>
+  </view>
+  
+
+</view>
+
+<view class="cu-modal {{modalName_1=='deviceInfo'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{deviceData.name}} {{deviceData.id}}</view>
+      <view class="action" bindtap="hideDeviceInfoModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl text-lg">
+      <view >
+        <view>类别：{{deviceData.zl}}</view>
+        <view>位置：{{deviceData.wz}}</view>
+        <view class="{{deviceData.zt[1]}}">状态：{{deviceData.zt[0]}}</view>
+        <view>备注：{{deviceData.bz}}</view>
+      </view>
+      <view class="padding">
+        <button class="cu-btn round" bindtap="changeDevice" data-deviceId="{{deviceData.id}}">修改设备</button>
+        <button class="cu-btn round" bindtap="borrowRecord" data-deviceId="{{deviceData.id}}">借出记录</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName_2=='borrowRecord'?'show':''}}">
+  <view class="cu-dialog" id="borrowRecordView">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{borrowRecord[0]}}</view>
+      <view class="action" bindtap="hideBorrowRecordModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <scroll-view class="padding-xl" scroll-y scroll-with-animation style="height:500px">
+      <view wx:for="{{borrowRecord[1]}}">{{item}}</view>
+      <view class="text-sm padding text-grey">按时间倒序排列</view>
+    </scroll-view>
+  </view>
+</view>
+

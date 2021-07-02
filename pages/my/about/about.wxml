@@ -1,0 +1,32 @@
+<!--about.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">关于本项目</view>
+  </cu-custom>
+
+  <image class="describe" mode="aspectFit" src="/images/index/1.png"></image>
+  <view class="describe">
+    <text class="desc-title">简介</text>
+    <text class="text-black"> CUBOT物资管理系统</text>
+    <text class="desc-title">项目说明</text>
+    <text class="text-black">贵重物资扫码出入库，借用情况可溯源。感谢作者 小熊同学、炽烈激。</text>
+    <text class="desc-title">项目相关仓库（点击复制仓库地址）</text>
+    <view class="solid-bottom text-black" bindtap='copyText' data-text="https://github.com/weilanwl/ColorUI">本项目参考使用ColorUI组件库,感谢作者大大 ≧▽≦ </view>
+    <view class="solid-bottom text-black"  bindtap='copyText' data-text="https://github.com/xiongyi24/wzgl_server">前端仓库(写后端的前端萌新,多多指教(o゜▽゜)o☆)</view>
+    <view class="solid-bottom text-black"  bindtap='copyText' data-text="https://github.com/xiaoliujinpeng/device_manage">后端仓库</view>
+    <text class="desc-title">感谢作者(～￣▽￣)～</text>
+    <view>
+      <view class="cu-capsule round">
+        <view class="cu-tag bg-grey ">前端</view>
+        <view class="cu-tag line-grey">小熊同学</view>
+      </view>
+      <view class="cu-capsule round">
+        <view class="cu-tag bg-grey ">后端</view>
+        <view class="cu-tag line-grey">炽烈激</view>
+      </view>
+    </view>
+      
+      
+  </view>
+</view>

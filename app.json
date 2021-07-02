@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index/index",
+    "pages/index/addDevice/addDevice",
+    "pages/index/borrow/borrow",
+    "pages/index/examine/examine",
+    "pages/index/device/device",
+    "pages/index/changeDevice/changeDevice",
+    "pages/index/myRecode/myRecode",
+    "pages/scan/scan/scan",
+    "pages/my/my/my",
+    "pages/my/login/login",
+    "pages/my/about/about",
+    "pages/my/register/register"
+  ],
+  "tabBar": {
+    "color": "#8799a3",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "首页",
+        "iconPath": "images/index-unclicked.png",
+        "selectedIconPath": "images/index.png"
+      },{
+        "pagePath": "pages/scan/scan/scan",
+        "text": "扫码",
+        "iconPath": "images/scan.png",
+        "selectedIconPath": "images/scan-unclicked.png"
+      },
+      {
+        "pagePath": "pages/my/my/my",
+        "text": "我的",
+        "iconPath": "images/me-unclicked.png",
+        "selectedIconPath": "images/me.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "ColorUI",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}
