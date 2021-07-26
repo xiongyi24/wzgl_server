@@ -12,7 +12,7 @@ const formatTime = date => {
 }
 
 // 网络请求通用模板
-var apiHost = 'https://wzgl.xiongyi24.club'
+var apiHost = 'https://www.cumt-ljp.ltd'
 
 function Request(url, method, callback, data = '') {
   var header = {
@@ -97,7 +97,7 @@ function Request(url, method, callback, data = '') {
           }
         },
         fail: function (error) {
-          // console.log(error)
+          console.log(error)
           wx.showToast({
             title: '网络连接失败',
             icon: 'error',
@@ -131,7 +131,7 @@ function BaseRequest(url, method, callback, data = '') {
       }
     },
     fail: function (error) {
-      // console.log(error)
+      console.log(error)
       wx.showToast({
         title: '网络连接失败',
         icon: 'none',

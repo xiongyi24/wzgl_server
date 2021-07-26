@@ -1,0 +1,26 @@
+<!--pages/index/add/add.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="content">添加</view>
+</cu-custom>
+
+<view class="flex-sub text-center">
+  <view class="padding"></view>
+  <view class="solid-bottom text-xsl padding">
+    <text class=" cuIcon-edit"></text>
+  </view>
+
+  <view class="padding"> </view>
+
+  <view class="cu-bar bg-white flex solid-bottom padding justify-start action">
+      <text class="cuIcon-title text-orange "></text> 选择操作
+  </view>
+  <view class="cu-list grid col-3">
+    <view class="cu-item" wx:for="{{iconList}}" wx:key >
+      <view bindtap="{{item.func}}" data-id="{{deviceId}}">
+        <view class="cuIcon-{{item.icon}} text-{{item.color}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  
+</view>

@@ -1,0 +1,32 @@
+<!--pages/index/addLocation/addLocation.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">添加位置</view>
+  </cu-custom>
+
+  <view class="flex-sub text-center">
+    <view class="padding"></view>
+    <view class="solid-bottom text-xsl padding">
+      <text class=" cuIcon-edit"></text>
+    </view>
+    <form>
+      <view class="cu-form-group">
+        <view class="title">位置ID</view>
+        <input placeholder="{{locationId?locationId:'请输入设备编号'}}" bindinput="locationIdInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">位置名称</view>
+        <input placeholder="请输入设备名称" bindinput="locationNameInput"></input>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-gradual-blue lg" bindtap="addLocation">添加位置</button>
+      </view>
+    </form>
+    <view class="solid-bottom text-xl padding text-center" bindtap="findLocationByCode">
+        <text class="text-black"> 扫码输入位置ID </text>  
+    </view> 
+  </view>
+</view>
+
+

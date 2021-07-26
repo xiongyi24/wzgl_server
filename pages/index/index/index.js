@@ -1,19 +1,20 @@
 // index.js
+var app = getApp()
 
 Page({
   data: {
     cardCur: 0,
     swiperList: [{
       id: 0,
-      type: 'image',
+      classes: 'image',
       url: '/images/index/1.png'
     }, {
       id: 1,
-      type: 'image',
+      classes: 'image',
       url: '/images/index/2.jpg'
     }, {
       id: 2,
-      type: 'image',
+      classes: 'image',
       url: '/images/index/3.jpg'
     },
   ],
@@ -45,6 +46,12 @@ Page({
       icon: 'icon',
       isShow: false
     }, {
+      title: '添加',
+      name: 'add',
+      color: 'brown',
+      icon: 'tagfill',
+      isShow: false
+    }, {
       title: '敬请期待',
       name: 'more',
       color: 'green',
@@ -55,23 +62,38 @@ Page({
   },
 
   onLoad() {
+    var that = this
+
     // 初始化towerSwiper 传已有的数组名即可
-    this.towerSwiper('swiperList');
+    that.towerSwiper('swiperList');
+
+    app.func.Req('/api/micro/read/','GET' , function(res){
+      // console.log(res)
+      if (res.code == 200) {
+        that.setData({
+          swiperList: res.data
+        })
+      } else {
+        wx.showToast({
+          title: '轮播图获取失败',
+          icon: 'none'
+        })
+      }
+    })
 
     // 展示仅管理员可见的模块
-    var that = this
     wx.getStorage({
       key: 'userStatus',
       success: function(res) {
         if (res.data == 'admin') {
           for (var data of that.data.elements) {
-            if (data.title == '审核') {
+            if (data.title == '审核' || data.title == '添加') {
               data.isShow = true
             }
           }
         } else {
           for (var data of that.data.elements) {
-            if (data.title == '审核') {
+            if (data.title == '审核' || data.title == '添加') {
               data.isShow = false
             }
           }

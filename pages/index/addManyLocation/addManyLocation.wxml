@@ -1,0 +1,14 @@
+<!--pages/index/addManyLocation/addManyLocation.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">批量添加位置</view>
+</cu-custom>
+
+<view class="flex-sub text-center">
+  <view class="padding"></view>
+  <view class="solid-bottom text-xsl padding">
+    <text class=" cuIcon-edit"></text>
+  </view>
+
+  <text class="text-black text-bold">批量修改位置</text>
+  
+</view>

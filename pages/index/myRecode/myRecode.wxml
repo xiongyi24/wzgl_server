@@ -1,5 +1,4 @@
 <!--pages/index/myRecode/myRecode.wxml-->
-<!--pages/index/device/device.wxml-->
 <view>
   <cu-custom bgColor="bg-gradual-blue" isBack="true">
     <view slot="backText">返回</view>
@@ -31,7 +30,7 @@
                   <view class="{{item.operation[1]}} colorText">{{item.operation[0]}}</view>
                   <view class="{{item.state[1]}} colorText">{{item.state[0]}}</view>
                 </view>
-                <view wx:if="{{item.operation[0]=='借出' && item.state[0]=='审核通过'}}">
+                <view wx:if="{{(item.operation[0]=='借出' && item.state[0]=='审核通过') || (item.operation[0]=='归还' && item.state[0]=='审核拒绝')}}">
                   <button class="cu-btn round" bindtap="returnFunc" data-deviceId="{{item.id}}" data-approveId="{{item.approve_id}}">归还</button>
                 </view>
               </view>

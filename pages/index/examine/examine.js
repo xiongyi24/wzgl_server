@@ -55,7 +55,8 @@ Page({
                     'id': data.deviceId,
                     'name': data.deviceName,
                     'username': data.name,
-                    'time': data.created_time.slice(0, 19)
+                    'time': data.created_time.slice(0, 19),
+                    'show': data.show
                   })
                 }
                 // 按时间倒序排序
@@ -77,7 +78,7 @@ Page({
           } else if (that.data.TabCur == 1){
             wx.hideLoading()
             app.func.Req('/api/approve?state=0&operation=1','GET' , function(res){
-              // console.log(res)
+              console.log(res)
               if (res["code"] == 200) {
                 var datas = res.data
                 var data_list = []
@@ -87,7 +88,9 @@ Page({
                     'id': data.deviceId,
                     'name': data.deviceName,
                     'username': data.name,
-                    'time': data.created_time.slice(0, 19)
+                    'location': data.location,
+                    'time': data.created_time.slice(0, 19),
+                    'show': data.show
                   })
                 }
                 console

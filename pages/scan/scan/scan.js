@@ -5,34 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iconList: [{
-      icon: 'same',
-      color: 'red',
-      name: '查找/借出设备',
-      func: 'findDevice',
-      isShow: true
-    }, {
-      icon: 'add',
-      color: 'yellow',
-      name: '添加设备',
-      func: 'addDevice',
-      isShow: false
-    }],
-    deviceId: '',
     flag: true
-  },
-
-  findDevice: function(e) {
-    // console.log('/pages/index/borrow/borrow?deviceId=' + e.currentTarget.dataset.id)
-    wx.navigateTo({
-      url: '/pages/index/borrow/borrow?deviceId=' + e.currentTarget.dataset.id,
-    })
-  },
-
-  addDevice: function(e) {
-    wx.navigateTo({
-      url: '/pages/index/addDevice/addDevice?deviceId=' + e.currentTarget.dataset.id,
-    })
   },
 
   scan: function(res) {
@@ -40,34 +13,39 @@ Page({
     wx.scanCode({
       success: function(res) {
         // console.log(res)
-        that.setData({
-          deviceId: res.result
+        wx.showLoading({
+          title: '加载中',
+        })
+        // 跳转至查找页面
+        wx.navigateTo({
+          url: '/pages/index/borrow/borrow?deviceId=' + res.result,
+          success: function(res) {
+            // 跳转成功后允许扫码页面触发弹出
+            that.setData({
+              flag: true
+            })
+            wx.hideLoading()
+          }
         })
       },
       fail: function(res) {
-        wx.showToast({
-          title: "扫码失败",
-          icon: "error"
+        // console.log(res)
+        var errorMsg = "扫码失败"
+        if (res.errMsg == 'scanCode:fail cancel')
+          errorMsg = "取消扫码"
+        wx.switchTab({
+          url: '/pages/index/index/index',
+          success: function(res) {
+            wx.showToast({
+              title: errorMsg,
+              icon: "error"
+            })
+            that.setData({
+              flag: true
+            })
+          }
         })
       }
-    })
-    that.setData({
-      flag: false
-    })
-  },
-
-  scanAgain: function(e) {
-    this.setData({
-      deviceId: '',
-      flag: true
-    })
-    this.onLoad()
-  },
-
-  // 监听输入
-  deviceIdInput: function(e) {
-    this.setData({
-      deviceId: e.detail.value
     })
   },
 
@@ -75,50 +53,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 先判断有没有登陆，顺便获取权限
-    var that = this
-    wx.getStorage({
-      key: 'userStatus',
-      success: function(res) {
-        that.setData({
-          userStatus: res.data
-        })
-        if (res.data == 'admin') {
-          for (var data of that.data.iconList) {
-            if (data.name == '添加设备') {
-              data.isShow = true
-            }
-          }
-        } else {
-          for (var data of that.data.iconList) {
-            if (data.name == '添加设备') {
-              data.isShow = false
-            }
-          }
-        }
-        that.setData({
-          iconList: that.data.iconList
-        })
-        if (that.data.flag) {
-          that.scan()
-        }
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: '尚未登录，请前往“我的”登录',
-          icon: 'none',
-          duration: 2000
-        })
-        for (var data of that.data.iconList) {
-          if (data.name == '添加设备') {
-            data.isShow = false
-          }
-        }
-        that.setData({
-          iconList: that.data.iconList
-        })
-      }
-    })
+    
   },
 
   /**
@@ -132,7 +67,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad()
+    if (this.data.flag) {
+      // 首先不允许扫码页面触发弹出
+      this.setData({
+        flag: false
+      })
+      this.scan()
+    }
   },
 
   /**

@@ -1,0 +1,44 @@
+<!--pages/index/location/location.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">位置管理</view>
+  </cu-custom>
+
+  <view class="cu-bar bg-white search">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="按位置名称搜索位置" confirm-type="search" bindinput="searchDevice"></input>
+    </view>
+  </view>
+
+  <view wx:if="{{locationData.length != 0}}">
+    <view wx:for="{{locationData}}" wx:key class="cu-card article {{isCard?'no-card':''}}">
+      <view wx:if="{{item.isShow}}" class="cu-item shadow" data-approve_id="{{item.approve_id}}">
+        <view class="title">
+          <view></view>
+          <view class="text-cut">{{item.name}}</view>
+        </view>
+        <view class="content">
+          <view class="desc">
+            <view class="flex flex-wrap justify-between align-center bg-white">
+              <view class="flex solid-bottom justify-start">
+                <view class="text-df ">位置ID：{{item.serial_number}}</view>
+              </view>
+              <button class="cu-btn round" bindtap="manageLocation" data-data="{{item}}">管理</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <button class='Scancode' bindtap='addLocation'>添加位置</button>
+
+  </view>
+  <view wx:else class="none">
+    <view class="text-gray text-bold text-lg text-center">暂无信息</view>
+  </view>
+
+
+</view>
+

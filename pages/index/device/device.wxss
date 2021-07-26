@@ -1,16 +1,4 @@
 /* pages/index/device/device.wxss */
-.cu-card {
-	display: block;
-	overflow: hidden;
-}
-
-.cu-card>.cu-item {
-	display: block;
-	background-color: var(--white);
-	overflow: hidden;
-	border-radius: 10rpx;
-	margin: 20rpx 35rpx 5rpx 35rpx;
-}
 .none{
   display: flex;
   align-items: center;
@@ -18,18 +6,7 @@
   width: 100%;
   height: 400px
 }
-.Scancode {
-  font-size: 39rpx;
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-.botton {
-  margin: 0rpx 0rpx 100rpx 0rpx;
-}
+
 
 .VerticalNav.nav {
   width: 200rpx;

@@ -52,9 +52,15 @@ Page({
                             userId:'',
                             userStatus:''
                           })
+                          wx.showToast({
+                            title: '注销成功'
+                          })
+                          setTimeout(function () {
+                            // 跳转至tab页面需要用 switchTab 不能用 navigateTo
                           wx.switchTab({
                             url: '../my/my',
                           });
+                          }, 2000)
                         }
                       })
                     }

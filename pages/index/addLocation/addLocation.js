@@ -1,63 +1,22 @@
-// pages/index/addDevice/addDevice.js
+// pages/index/addLocation/addLocation.js
 var app = getApp()
 
 Page({
 
   data: {
-    deviceId: "",
-    deviceName: "",
-    // 注意规定"暂无位置"的id
-    deviceLocation: "暂无位置",
-    deviceLocationId: "00000",
-    deviceType: "",
-    deviceComments: ""
+    locationId: "",
+    locationName: ""
 },
 
-  deviceIdInput: function(e) {
+  locationIdInput: function(e) {
     this.setData({
-      deviceId: e.detail.value
+      locationId: e.detail.value
     })
   },
 
-  deviceNameInput: function(e) {
+  locationNameInput: function(e) {
     this.setData({
-      deviceName: e.detail.value
-    })
-  },
-
-  deviceLocationInput: function(e) {
-    this.setData({
-      deviceLocation: e.detail.value
-    })
-  },
-
-  deviceTypeInput: function(e) {
-    this.setData({
-      deviceType: e.detail.value
-    })
-  },
-
-  deviceCommentsInput: function(e) {
-    this.setData({
-      deviceComments: e.detail.value
-    })
-  },
-
-  findDeviceByCode: function(res) {
-    var that = this
-    wx.scanCode({
-      success: function(res) {
-        // console.log(res)
-        that.setData({
-          deviceId: res.result
-        })
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: "扫码失败",
-          icon: "error"
-        })
-      }
+      locationName: e.detail.value
     })
   },
 
@@ -66,8 +25,12 @@ Page({
     wx.scanCode({
       success: function(res) {
         // console.log(res)
+        wx.showToast({
+          title: "扫码成功",
+          icon: "none"
+        })
         that.setData({
-          deviceLocation: res.result
+          locationId: res.result
         })
       },
       fail: function(res) {
@@ -79,18 +42,15 @@ Page({
     })
   },
 
-  addDevice: function(res) {
+  addLocation: function(res) {
       var that = this
-      if (that.data.deviceId && that.data.deviceName && that.data.deviceLocation && that.data.deviceType) {
+      if (that.data.locationId && that.data.locationName) {
         var data = {
-          serial_number: that.data.deviceId,
-          name: that.data.deviceName,
-          location: that.data.deviceLocation,
-          classes: that.data.deviceType,
-          comments: that.data.deviceComments
+          serial_number: that.data.locationId,
+          name: that.data.locationName
         }
-        app.func.Req('/api/device/','POST' , function(res){
-          // console.log(res)
+        app.func.Req('/api/location/','POST' , function(res){
+          console.log(res)
           if (res.code == 201) {
             wx.showToast({
               title: "添加成功",
@@ -126,10 +86,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.deviceId) {
+    if (options.locationId) {
       var that = this
       that.setData({
-        deviceId: options.deviceId
+        locationId: options.locationId
       })
     }
   },

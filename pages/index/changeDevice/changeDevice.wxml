@@ -13,15 +13,15 @@
     <form>
       <view class="cu-form-group">
         <view class="title">编号</view>
-        <input placeholder="{{deviceId?deviceId:'请输入设备编号'}}" bindinput="deviceIdInput"></input>
+        <input placeholder="{{deviceId}}" bindinput="deviceIdInput"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">名称</view>
-        <input value="{{deviceName?deviceName:'请输入设备名称'}}" bindinput="deviceNameInput"></input>
+        <input value="{{deviceName}}" bindinput="deviceNameInput"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">位置</view>
-        <input value="{{deviceLocation?deviceLocation:'请输入设备位置'}}" bindinput="deviceLocationInput"></input>
+        <input value="{{deviceLocation}}" bindinput="deviceLocationInput"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">类别</view>

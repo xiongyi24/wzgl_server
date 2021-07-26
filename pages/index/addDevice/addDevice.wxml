@@ -13,7 +13,9 @@
     <form>
       <view class="cu-form-group">
         <view class="title">编号</view>
-        <input placeholder="{{deviceId?deviceId:'请输入设备编号'}}" bindinput="deviceIdInput"></input>
+        <input wx:if="{{deviceId}}" value="{{deviceId}}" bindinput="deviceIdInput"></input>
+        <input wx:else placeholder="请输入设备编号"  bindinput="deviceIdInput"></input>
+        <text class="cuIcon-scan lg text-black" bindtap="findDeviceByCode"></text>
       </view>
       <view class="cu-form-group">
         <view class="title">名称</view>
@@ -21,7 +23,9 @@
       </view>
       <view class="cu-form-group">
         <view class="title">位置</view>
-        <input placeholder="请输入设备位置" bindinput="deviceLocationInput"></input>
+        <input wx:if="{{deviceLocation}}" value="{{deviceLocation}}" bindinput="deviceLocationInput"></input>
+        <input wx:else placeholder="请输入设备位置"  bindinput="deviceLocationInput"></input>
+        <text class="cuIcon-scan lg text-black" bindtap="findLocationByCode"></text>
       </view>
       <view class="cu-form-group">
         <view class="title">类别</view>
@@ -35,9 +39,6 @@
         <button class="cu-btn bg-gradual-blue lg" bindtap="addDevice">添加设备</button>
       </view>
     </form>
-    <view class="solid-bottom text-xl padding text-center" bindtap="findDeviceByCode">
-        <text class="text-black"> 扫码输入编号 </text>  
-    </view> 
   </view>
 </view>
 

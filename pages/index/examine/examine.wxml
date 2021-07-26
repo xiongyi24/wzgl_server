@@ -14,7 +14,7 @@
   <view wx:if="{{TabCur==0}}">
     <view wx:if="{{examineData.length != 0}}">
       <view wx:for="{{examineData}}" wx:key class="cu-card article {{isCard?'no-card':''}}">
-        <view class="cu-item shadow" bindlongpress="unexamineFunc" data-approveId="{{item.approve_id}}">
+        <view wx:if="{{item.show}}" class="cu-item shadow" bindlongpress="unexamineFunc" data-approveId="{{item.approve_id}}">
           <view class="title">
             <view class="text-cut">{{item.name}} {{item.id}}</view>
           </view>
@@ -38,13 +38,14 @@
   <view wx:if="{{TabCur==1}}">
     <view wx:if="{{returnData.length != 0}}">
       <view wx:for="{{returnData}}" wx:key class="cu-card article {{isCard?'no-card':''}}">
-        <view class="cu-item shadow" bindlongpress="unexamineFunc" data-approveId="{{item.approve_id}}">
+        <view wx:if="{{item.show}}" class="cu-item shadow" bindlongpress="unexamineFunc" data-approveId="{{item.approve_id}}">
           <view class="title">
             <view class="text-cut">{{item.name}} {{item.id}}</view>
           </view>
           <view class="content">
             <view class="desc">
               <view class="text-df">借出人姓名：{{item.username}}</view>
+              <view class="text-df">归还位置：{{item.location}}</view>
               <view class="flex flex-wrap justify-between align-center bg-white">
                 <view class="text-df ">申请时间：{{item.time}}</view>
                 <button class="cu-btn round" bindtap="examineFunc" data-approveId="{{item.approve_id}}">审批</button>

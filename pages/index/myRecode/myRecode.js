@@ -30,7 +30,6 @@ Page({
     })
     var that = this
     if (that.data.TabCur == 0){
-      // console.log('/api/approve/?username='+app.globalData.userId)
       // 直接从缓存里读，防止错误
       wx.getStorage({
         key: 'userId',
@@ -91,35 +90,69 @@ Page({
 
   returnFunc: function(e) {
     var that = this
-    wx.showModal({
-      title: "归还",
-      content: "确定归还？",
+    // 扫码获取位置
+    wx.scanCode({
       success: function(res) {
-        if (res.confirm) {
-          // console.log(e)
-          var data = {
-            serial_number: e.currentTarget.dataset.deviceid,
-            id: e.currentTarget.dataset.approveid
-          }
-          // console.log(data)
-          app.func.Req('/api/device/apply_return/','POST' , function(res){
-            // console.log(res)
-            if (res.code == 200) {
-              // 把数据刷新放到前面，已解决刷新延迟的问题
-              that.refreshData()
-              wx.showToast({
-                title: '归还申请提交成功',
-                icon: 'success',
-              })
-            } else {
-              that.refreshData()
-              wx.showToast({
-                title: 'res.message',
-                icon: 'none'
-              })
-            }
-          }, data)
+       var locationId = res.result 
+      //  console.log(locationId)
+        var data = {
+          serial_number: locationId
         }
+        // 确认位置
+        app.func.Req('/api/location/retrieves/','POST' , function(res){
+          console.log(res)
+          if (res.code == 200) {
+            wx.showModal({
+              title: "确定归还？",
+              content: "归还地点：" + res.data.name,
+              success: function(res) {
+                if (res.confirm) {
+                  // console.log(e)
+                  var data = {
+                    serial_number: e.currentTarget.dataset.deviceid,
+                    id: e.currentTarget.dataset.approveid,
+                    location_number: locationId,
+                  }
+                  // console.log(data)
+                  app.func.Req('/api/device/apply_return/','POST' , function(res){
+                    // console.log(res)
+                    if (res.code == 200) {
+                      // 把数据刷新放到前面，已解决刷新延迟的问题
+                      that.refreshData()
+                      wx.showToast({
+                        title: '归还申请提交成功',
+                        icon: 'success',
+                      })
+                    } else {
+                      that.refreshData()
+                      wx.showToast({
+                        title: res.message,
+                        icon: 'none'
+                      })
+                    }
+                  }, data)
+                }
+              }
+            })
+          } else if (res.code == 404) {
+            wx.showToast({
+              title:  '未找到位置编号为'+ locationId +'的位置信息',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '扫码错误：' + res.message,
+              icon: 'none'
+            })
+          }
+        }, data)
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '扫码失败',
+          icon: "error"
+        })
       }
     })
   },

@@ -1,0 +1,29 @@
+<!--pages/index/manageLocation/manageLocation.wxml-->
+<view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="true">
+    <view slot="backText">返回</view>
+    <view slot="content">管理位置</view>
+  </cu-custom>
+
+  <view class="flex-sub text-center">
+    <view class="padding"></view>
+    <view class="solid-bottom text-xsl padding">
+      <text class=" cuIcon-edit"></text>
+    </view>
+    <form>
+      <view class="cu-form-group">
+        <view class="title">位置ID</view>
+        <input value="{{locationId}}" bindinput="locationIdInput"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">位置名称</view>
+        <input value="{{locationName}}" bindinput="locationNameInput"></input>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-gradual-blue lg deleteButton" bindtap="changeLoction">修改位置信息</button>
+        <button class="cu-btn bg-gradual-pink lg deleteButton .margin-top-sm" bindtap="deleteLoction">删除位置</button>
+      </view>
+    </form>
+  </view>
+</view>
+

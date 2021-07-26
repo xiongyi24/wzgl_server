@@ -67,10 +67,15 @@ Page({
                           data: status,
                           key: 'userStatus',
                           success: function(res) {
-                            // 跳转至tab页面需要用 switchTab 不能用 navigateTo
+                            wx.showToast({
+                              title: '登陆成功！'
+                            })
+                            setTimeout(function () {
+                              // 跳转至tab页面需要用 switchTab 不能用 navigateTo
                             wx.switchTab({
                               url: '../my/my',
                             });
+                            }, 2000)
                           }
                         })
                       }

@@ -41,13 +41,15 @@ Page({
       app.func.baseReq('/api/register/register/','POST' , function(res){
         console.log(res)
         if (res.code == 200){
-          wx.switchTab({
-            url: '/pages/index/index/index',
-          })
           wx.showToast({
-            title: '申请注册成功',
+            title: res.data,
             icon: "none"
           })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 2000)
         } else {
           wx.showToast({
             title: res.data,

@@ -115,13 +115,6 @@ Page({
     })
   },
 
-  // 跳转至添加设备
-  addDevice: function(res) {
-    wx.navigateTo({
-      url: '../addDevice/addDevice',
-    });
-  },
-
   // 设备借出记录查询
   borrowRecord: function(e) {
     var that = this
