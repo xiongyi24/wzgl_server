@@ -9,7 +9,7 @@
 
 
 .VerticalNav.nav {
-  width: 200rpx;
+  width: 300rpx;
   white-space: initial;
 }
 
@@ -46,7 +46,11 @@
 }
 
 .cu-list.menu-avatar>.cu-item_1 {
+	position: relative;
+	display: flex;
 	padding-right: 10rpx;
 	height: 140rpx;
 	background-color: var(--white);
+	justify-content: center;
+	align-items: center
 }

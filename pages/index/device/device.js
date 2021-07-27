@@ -24,7 +24,7 @@ Page({
       for (var deviceInfo of type.deviceInfo) {
         let a = key;
         // 按何值搜索
-        let b = deviceInfo.name;
+        let b = deviceInfo.id;
         if (b.search(a) != -1) {
           deviceInfo.isShow = true
         } else {

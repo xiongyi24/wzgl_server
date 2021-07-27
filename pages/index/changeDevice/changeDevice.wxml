@@ -25,11 +25,11 @@
       </view>
       <view class="cu-form-group">
         <view class="title">类别</view>
-        <input value="{{deviceType?deviceType:'请输入设备类别'}}" bindinput="deviceTypeInput"></input>
+        <input value="{{deviceType}}" bindinput="deviceTypeInput"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">注释（非必填）</view>
-        <input value="{{deviceComments?deviceComments:''}}" bindinput="deviceCommentsInput"></input>
+        <input value="{{deviceComments}}" bindinput="deviceCommentsInput"></input>
       </view>
       <view class="padding flex flex-direction">
         <button class="cu-btn bg-gradual-blue lg deleteButton" bindtap="changeDevice">修改设备信息</button>

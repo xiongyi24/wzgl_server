@@ -120,6 +120,12 @@ Page({
     this.onLoad() 
   },
 
+  onShareAppMessage(){
+    wx.showShareMenu({
+      
+    })
+  },
+
   /** 轮播图相关 */
   DotStyle(e) {
     this.setData({

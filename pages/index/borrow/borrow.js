@@ -41,7 +41,7 @@ Page({
               var return_flag = false
               var lastBorrowRecode = res.data.records[res.data.records.length - 1] 
               // console.log(lastBorrowRecode)
-              if (lastBorrowRecode.operation == 0 && lastBorrowRecode.name == that.data.userName) {
+              if (lastBorrowRecode && lastBorrowRecode.operation == 0 && lastBorrowRecode.name == that.data.userName) {
                 return_flag = true
               }
               // // 判断是否显示“借出”（设备状态为“未借出”）

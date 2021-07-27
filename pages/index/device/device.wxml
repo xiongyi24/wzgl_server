@@ -8,7 +8,7 @@
   <view class="cu-bar bg-white search">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="按设备名称搜索设备" confirm-type="search" bindinput="searchDevice"></input>
+      <input type="text" placeholder="按设备id搜索设备" confirm-type="search" bindinput="searchDevice"></input>
     </view>
   </view>
 
@@ -31,9 +31,16 @@
           <!-- 内容 -->
           <view class="cu-list menu-avatar">
             <view wx:for="{{item.deviceInfo}}" class="cu-item_1" wx:if="{{item.isShow}}">
-              <view class="flex solid-bottom padding justify-between align-center">
-                <view class="text-black">{{item.name}} {{item.id}}</view>
-                <button class="cu-btn round" bindtap="deviceInfo" data-deviceData="{{item}}">详情</button>
+              <view class="flex solid-bottom justify-center ">
+                <view class="flex p-xs mb-sm">
+                  <view  class="flex-treble padding-xs margin-xs radius" bindtap="deviceInfo" data-deviceData="{{item}}">
+                    <view class="text-black">{{item.name}}</view>
+                    <view class="text-black">id：{{item.id}}</view>
+                  </view>
+                  <view class="flex-sub padding-xs margin-xs radius">
+                    <button class="cu-btn line-black sm shadow" bindtap="deviceInfo" data-deviceData="{{item}}">详情</button>
+                  </view>
+                </view>
               </view>
             </view>
           </view>
