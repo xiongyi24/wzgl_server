@@ -7,7 +7,7 @@ Page({
     deviceId: "",
     deviceName: "",
     // 注意规定"暂无位置"的id
-    deviceLocation: "暂无位置",
+    deviceLocation: "默认位置",
     deviceLocationId: "00000",
     deviceType: "",
     deviceComments: ""
@@ -89,9 +89,10 @@ Page({
           classes: that.data.deviceType,
           comments: that.data.deviceComments
         }
+        // console.log(data)
         app.func.Req('/api/device/','POST' , function(res){
           // console.log(res)
-          if (res.code == 201) {
+          if (res.code == 200) {
             wx.showToast({
               title: "添加成功",
             })
@@ -99,11 +100,11 @@ Page({
               wx.navigateBack({
                 delta: 1,
               })
-            }, 500)
+            }, 1000)
             // console.log(that.data)
           } else if (res.code == 400) {
               wx.showToast({
-                title: res.message,
+                title: String(res.message),
                 icon: "none"
               })
           } else {
